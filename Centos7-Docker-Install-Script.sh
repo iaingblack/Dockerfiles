@@ -25,3 +25,5 @@ chmod +x /usr/local/bin/docker-machine
 
 docker-compose --version
 docker-machine version
+
+yum install git -y
