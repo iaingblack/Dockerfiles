@@ -1,3 +1,5 @@
+DO FIRST
+--------
 yum update
 
 tee /etc/yum.repos.d/docker.repo <<-'EOF'
@@ -9,6 +11,8 @@ gpgcheck=1
 gpgkey=https://yum.dockerproject.org/gpg
 EOF
 
+DO SECOND
+---------
 yum install docker-engine
 systemctl enable docker
 systemctl start docker
