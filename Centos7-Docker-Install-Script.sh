@@ -27,3 +27,5 @@ docker-compose --version
 docker-machine version
 
 yum install git -y
+
+git clone https://github.com/iaingblack/Dockerfiles.git
