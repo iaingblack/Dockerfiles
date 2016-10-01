@@ -1,6 +1,4 @@
-DO FIRST
---------
-yum update
+yum update -y
 
 tee /etc/yum.repos.d/docker.repo <<-'EOF'
 [dockerrepo]
@@ -11,9 +9,7 @@ gpgcheck=1
 gpgkey=https://yum.dockerproject.org/gpg
 EOF
 
-DO SECOND
----------
-yum install docker-engine
+yum install docker-engine -y
 systemctl enable docker
 systemctl start docker
 
@@ -29,3 +25,7 @@ docker-machine version
 yum install git -y
 
 git clone https://github.com/iaingblack/Dockerfiles.git
+cd Dockerfiles
+git pull
+
+
