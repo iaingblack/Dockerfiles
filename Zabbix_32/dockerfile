@@ -41,16 +41,17 @@ RUN yum install -y http://repo.zabbix.com/zabbix/3.2/rhel/7/x86_64/zabbix-releas
 #Amend the php config file
 RUN sed -i -e 's/# php_value date.timezone Europe\/Riga/php_value date.timezone Europe\/Riga/g'  /etc/httpd/conf.d/zabbix.conf
 
-# Start Services
-CMD ["systemctl", "start",  "httpd"]
-CMD ["systemctl", "enable",  "httpd"]
-CMD ["systemctl", "start",  "mariadb"]
-CMD ["systemctl", "enable",  "mariadb"]
+# Start Services - SYSTEMCTL doesnt work... Need to use supervisor I think
+# CMD ["systemctl", "start",  "httpd"]
+# CMD ["systemctl", "enable",  "httpd"]
+# CMD ["systemctl", "start",  "mariadb"]
+# CMD ["systemctl", "enable",  "mariadb"]
 
 # http://www.bluepiccadilly.com/2011/12/creating-mysql-database-and-user-command-line-and-bash-script-automate-process
 COPY ./createdb.sh /root/createdb.sh
-#RUN chmod +x /root/createdb.sh
+RUN chmod +x /root/createdb.sh
+#Need to figure out MYSQL issue first
 #CMD ["/root/createdb.sh", "zabbix", "zabbix", "zabbix"]
 
 EXPOSE 10051 10052 80 2812
-ENTRYPOINT ["/usr/bin/watch", "/dev/null"]
+
