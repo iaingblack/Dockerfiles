@@ -48,11 +48,14 @@ RUN yum install -y  zabbix-agent \
 RUN sed -i -e 's/# php_value date.timezone Europe\/Riga/php_value date.timezone Europe\/Riga/g'  /etc/httpd/conf.d/zabbix.conf
 
 # Start Services
-RUN systemctl start httpd
-RUN systemctl enable httpd
-RUN systemctl start mariadb
-RUN systemctl enable mariadb
+CMD ["systemctl", "start",  "httpd"]
+#RUN systemctl start httpd
+#RUN systemctl enable httpd
+CMD ["systemctl", "start",  "httpd"]
+#RUN systemctl start mariadb
+#RUN systemctl enable mariadb
 
+# http://www.bluepiccadilly.com/2011/12/creating-mysql-database-and-user-command-line-and-bash-script-automate-process
 COPY ./createdb.sh /root/createdb.sh
 RUN /root/createdb.sh zabbix zabbix zabbix
 
