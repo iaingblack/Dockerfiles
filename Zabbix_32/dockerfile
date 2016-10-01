@@ -49,7 +49,8 @@ CMD ["systemctl", "enable",  "mariadb"]
 
 # http://www.bluepiccadilly.com/2011/12/creating-mysql-database-and-user-command-line-and-bash-script-automate-process
 COPY ./createdb.sh /root/createdb.sh
-RUN chmod +x /root/createdb.sh
-CMD ["/root/createdb.sh", "zabbix", "zabbix", "zabbix"]
+#RUN chmod +x /root/createdb.sh
+#CMD ["/root/createdb.sh", "zabbix", "zabbix", "zabbix"]
 
 EXPOSE 10051 10052 80 2812
+ENTRYPOINT ["/usr/bin/watch", "/dev/null"]
