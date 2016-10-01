@@ -8,6 +8,7 @@ Add plugins if possible
 
 NEXUS
 docker run -d -p 8081:8081 --name nexus sonatype/nexus:oss
+http://ipaddress:8081/nexus/
 
 TOMCAT
 Create a tomcat container to run WAR files
