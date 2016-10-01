@@ -1,0 +1,13 @@
+General idea;
+
+JENKINS
+sudo docker run -t -i -p 8080:8080 -v /etc/localtime:/etc/localtime:ro -P stephenreed/java8-jenkins-maven-git-nano
+java -jar opt/jenkins.war
+
+Add plugins if possible
+
+NEXUS
+docker run -d -p 8081:8081 --name nexus sonatype/nexus:oss
+
+TOMCAT
+Create a tomcat container to run WAR files
