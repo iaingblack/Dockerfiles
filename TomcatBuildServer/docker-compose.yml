@@ -13,3 +13,6 @@ services:
       ports:
         - "10022:22"
         - "10080:3000"
+    nexus:
+      image: sonatype/nexus3
+      ports: "8081:8081"
