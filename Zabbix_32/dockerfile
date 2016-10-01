@@ -4,7 +4,7 @@ FROM centos:centos7
 MAINTAINER Iain Black
 ENV REFRESHED_AT 2015-03-19
 # Do this or get a "Failed to get D-Bus connection: Operation not permitted" message
-ENV container=docker
+#ENV container=docker
 
 # Install Zabbix release packages.
 RUN yum install -y http://repo.zabbix.com/zabbix/3.2/rhel/7/x86_64/zabbix-release-3.2-1.el7.noarch.rpm && \
@@ -44,17 +44,11 @@ RUN sed -i -e 's/# php_value date.timezone Europe\/Riga/php_value date.timezone 
 # Start Services
 CMD ["systemctl", "start",  "httpd"]
 CMD ["systemctl", "enable",  "httpd"]
-#RUN systemctl start httpd
-#RUN systemctl enable httpd
 CMD ["systemctl", "start",  "mariadb"]
 CMD ["systemctl", "enable",  "mariadb"]
-#RUN systemctl start mariadb
-#RUN systemctl enable mariadb
 
 # http://www.bluepiccadilly.com/2011/12/creating-mysql-database-and-user-command-line-and-bash-script-automate-process
 COPY ./createdb.sh /root/createdb.sh
 CMD ["/root/createdb.sh", "zabbix", "zabbix", "zabbix"]
 
 EXPOSE 10051 10052 80 2812
-
-CMD ["run"]
