@@ -22,7 +22,7 @@ chmod +x /usr/local/bin/docker-machine
 docker-compose --version
 docker-machine version
 
-yum install git -y
+yum install git nano -y
 
 git clone https://github.com/iaingblack/Dockerfiles.git
 cd Dockerfiles
