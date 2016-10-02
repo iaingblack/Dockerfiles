@@ -10,7 +10,8 @@ ENV REFRESHED_AT 2015-03-19
 RUN yum install -y http://repo.zabbix.com/zabbix/3.2/rhel/7/x86_64/zabbix-release-3.2-1.el7.noarch.rpm && \
                    yum update -y && \
                    yum -y install \
-                          supervisor \ 
+                          supervisor \
+                          which \ 
                           monit \
                           nmap  \
                           traceroute \
@@ -42,17 +43,21 @@ RUN yum install -y http://repo.zabbix.com/zabbix/3.2/rhel/7/x86_64/zabbix-releas
 #Amend the php config file
 RUN sed -i -e 's/# php_value date.timezone Europe\/Riga/php_value date.timezone Europe\/Riga/g'  /etc/httpd/conf.d/zabbix.conf
 
-# Start Services - SYSTEMCTL doesnt work... Need to use supervisor I think
-# CMD ["systemctl", "start",  "httpd"]
-# CMD ["systemctl", "enable",  "httpd"]
-# CMD ["systemctl", "start",  "mariadb"]
-# CMD ["systemctl", "enable",  "mariadb"]
-
 # http://www.bluepiccadilly.com/2011/12/creating-mysql-database-and-user-command-line-and-bash-script-automate-process
 COPY ./createdb.sh /root/createdb.sh
 RUN chmod +x /root/createdb.sh
 #Need to figure out MYSQL issue first
 #CMD ["/root/createdb.sh", "zabbix", "zabbix", "zabbix"]
+
+# Get MYSQL running without systemd 
+RUN yum -y install initscripts
+WORKDIR /usr
+RUN echo "bind-address=0.0.0.0" >> /etc/my.cnf
+RUN /usr/bin/mysql_install_db --datadir="/var/lib/mysql" --user=mysql
+RUN /usr/bin/mysqld_safe --datadir="/var/lib/mysql" --socket="/var/lib/mysql/mysql.sock" --user=mysql  >/dev/null 2>&1 &
+RUN /usr/bin/mysqladmin -u root password SOMEPASSWORD
+CMD tail -f /var/log/mariadb/mariadb.log
+EXPOSE 3306
 
 EXPOSE 10051 10052 80 2812
 
