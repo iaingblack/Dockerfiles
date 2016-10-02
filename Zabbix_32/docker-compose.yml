@@ -1,9 +1,9 @@
 version: '2'
 services:
-    tomcat:
+    web:
       image: tomcat:8.0
       ports:
-        - "8888:8080"
+        - "80:80"
     jenkins:
       image: jenkins
       ports:
