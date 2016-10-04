@@ -24,6 +24,9 @@ docker-machine version
 
 yum install git nano -y
 
+systemctl stop firewalld
+systemctl disable firewalld
+
 git clone https://github.com/iaingblack/Dockerfiles.git
 cd Dockerfiles
 git pull
