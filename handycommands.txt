@@ -1,3 +1,21 @@
 REMOVE ALL CONTAINERS
+---------------------
 docker stop $(docker ps -a -q)
 docker rm $(docker ps -a -q)
+
+DELETE ALL IMAGES
+-----------------
+docker rmi $(docker images -q -a)
+
+ADD A PROXY WHEN CREATING DOCKERFILES
+-------------------------------------
+ENV http_proxy http://server:port
+ENV https_proxy http://server:port
+
+KEEP A CONTAINER RUNNING TO INSPECT LATER
+-----------------------------------------
+docker run -d ubuntu /bin/sh -c "while true; do echo hello world; sleep 1; done"
+
+FOLLOW LOGS ON A CONTAINER
+--------------------------
+docker logs -f 878978547
