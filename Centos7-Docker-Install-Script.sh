@@ -32,3 +32,13 @@ cd Dockerfiles
 git pull
 
 
+#IF THERE IS A PROXY, DO THIS - https://docs.docker.com/engine/admin/systemd/#http-proxy
+mkdir /etc/systemd/system/docker.service.d
+nano /etc/systemd/system/docker.service.d/http-proxy.conf
+
+[Service]
+Environment="HTTP_PROXY=http://myproxy:80"
+
+systemctl daemon-reload
+systemctl show --property=Environment docker
+systemctl restart docker
