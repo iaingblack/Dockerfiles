@@ -42,3 +42,5 @@ Environment="HTTP_PROXY=http://myproxy:80"
 systemctl daemon-reload
 systemctl show --property=Environment docker
 systemctl restart docker
+
+mount -t vmhgfs .host:/ /home/iain/Documents/share/
