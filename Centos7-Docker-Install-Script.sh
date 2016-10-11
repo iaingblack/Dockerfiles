@@ -43,4 +43,21 @@ systemctl daemon-reload
 systemctl show --property=Environment docker
 systemctl restart docker
 
+#To run on port 4243 so it is accessible by external systems (ie Foreman and docker plugin), amend this 
+# http://stackoverflow.com/questions/26166550/set-docker-opts-in-centos
+nano /usr/lib/systemd/system/docker.service
+  ExecStart=/usr/bin/dockerd
+to
+  ExecStart=/usr/bin/dockerd -H tcp://0.0.0.0:4243
+
+systemctl daemon-reload
+systemctl restart docker
+
+Then add a user;
+
+useradd 
+usermod -aG docker your_username
+systemctl restart docker
+
+#To add a shared folder in VMWare Workstation do this
 mount -t vmhgfs .host:/ /home/iain/Documents/share/
