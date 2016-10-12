@@ -49,9 +49,12 @@ nano /usr/lib/systemd/system/docker.service
   ExecStart=/usr/bin/dockerd
 to
   ExecStart=/usr/bin/dockerd -H tcp://0.0.0.0:4243
-
+or
+  ExecStart=/usr/bin/dockerd -H tcp://0.0.0.0:4243 -H unix:///var/run/docker.socl
+  
 systemctl daemon-reload
 systemctl restart docker
+chmod 777 /var/run/docker.sock
 
 Then add a user;
 
