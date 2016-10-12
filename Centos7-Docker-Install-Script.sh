@@ -55,9 +55,13 @@ systemctl restart docker
 
 Then add a user;
 
-useradd 
+useradd dockeruser
 usermod -aG docker your_username
+passwd dockeruser
 systemctl restart docker
+
+#May need to add these packages - #https://bugzilla.redhat.com/show_bug.cgi?id=1317011
+yum install -y docker-engine-selinux foreman-selinux
 
 #To add a shared folder in VMWare Workstation do this
 mount -t vmhgfs .host:/ /home/iain/Documents/share/
