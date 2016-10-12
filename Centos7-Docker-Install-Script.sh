@@ -50,7 +50,7 @@ nano /usr/lib/systemd/system/docker.service
 to
   ExecStart=/usr/bin/dockerd -H tcp://0.0.0.0:4243
 or
-  ExecStart=/usr/bin/dockerd -H tcp://0.0.0.0:4243 -H unix:///var/run/docker.socl
+  ExecStart=/usr/bin/dockerd -H tcp://0.0.0.0:4243 -H unix:///var/run/docker.sock
   
 systemctl daemon-reload
 systemctl restart docker
