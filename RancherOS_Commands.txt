@@ -6,6 +6,9 @@ docker pull rancher/server
 #Run the Server Image
 docker run -d --restart=always -p 8080:8080 rancher/server
 
+#Or with external DB
+docker run -d -v <host_vol>:/var/lib/mysql --restart=unless-stopped -p 8080:8080 rancher/server
+
 #In admin console make it be the local IP of the machine and port 8080, ignore complaints its not visible etc..
 
 #Run the Rancher Agent. Replace system_ip with machine IP and secret_key_generated_per_instance with the one it generates in WebUI
