@@ -1,4 +1,5 @@
 # https://blog.docker.com/2016/09/build-your-first-docker-windows-server-container/
+# https://msdn.microsoft.com/en-gb/virtualization/windowscontainers/docker/configure_docker_daemon
 # Add the containers feature and restart
 Install-WindowsFeature containers
 Restart-Computer -Force
