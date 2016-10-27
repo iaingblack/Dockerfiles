@@ -33,3 +33,8 @@ Start-Service docker
 
 #If you have it registred already and can't re-register, exit powerhsell and type this
 sc delete docker
+
+
+#--------------------------------------------------------------------
+#To set proxy do this in powershell
+[Environment]::SetEnvironmentVariable("HTTP_PROXY", "http://username:password@proxy:port/", [EnvironmentVariableTarget]::Machine)
