@@ -1,3 +1,9 @@
+#QUICKSTART
+#---------
+#wget https://github.com/iaingblack/Dockerfiles/blob/master/Centos7-Docker-Install-Script.sh
+#chmod +x Centos7-Docker-Install-Script.sh
+#./Centos7-Docker-Install-Script.sh
+
 yum update -y
 
 tee /etc/yum.repos.d/docker.repo <<-'EOF'
@@ -27,10 +33,12 @@ yum install git nano -y
 systemctl stop firewalld
 systemctl disable firewalld
 
+#End the basic install if this file is run
+exit 0
+
 git clone https://github.com/iaingblack/Dockerfiles.git
 cd Dockerfiles
 git pull
-
 
 #IF THERE IS A PROXY, DO THIS - https://docs.docker.com/engine/admin/systemd/#http-proxy
 mkdir /etc/systemd/system/docker.service.d
