@@ -76,3 +76,6 @@ yum install -y docker-engine-selinux foreman-selinux
 
 #To add a shared folder in VMWare Workstation do this
 mount -t vmhgfs .host:/ /home/iain/Documents/share/
+
+#EPEL resource
+https://dl.fedoraproject.org/pub/epel/7/x86_64/e/epel-release-7-9.noarch.rpm
