@@ -1,3 +1,4 @@
+# wget https://raw.githubusercontent.com/iaingblack/Dockerfiles/master/CentOS7-Docker-Install-Only.sh && chmod +x CentOS7-Docker-Install-Only.sh && ./CentOS7-Docker-Install-Only.sh
 yum update -y
 
 tee /etc/yum.repos.d/docker.repo <<-'EOF'
