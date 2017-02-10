@@ -1,5 +1,6 @@
+#NEEDS TOO MANY PREREQS
 $vhdpath = "C:\VHDs\Test.vhdx"
-$driveLetter = 
+$driveLetter = "E"
 $vhdsize = 50GB
 New-VHD -Path $vhdpath -Dynamic -SizeBytes $vhdsize 
  | Mount-VHD -Passthru 
