@@ -2,4 +2,7 @@ Windows Server
 Install-WindowsFeature -Name RSAT-Hyper-V-Tools
 
 Windows Desktops
+Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Hyper-V-Tools-All -All
+
+Or download here
 https://support.microsoft.com/en-gb/help/2693643/remote-server-administration-tools-rsat-for-windows-operating-systems
