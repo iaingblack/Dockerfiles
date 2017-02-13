@@ -1,21 +1,36 @@
-REMOVE ALL CONTAINERS
----------------------
+LINUX
+=====
+-REMOVE ALL CONTAINERS-
 docker stop $(docker ps -a -q)
 docker rm $(docker ps -a -q)
 
-DELETE ALL IMAGES
------------------
+-DELETE ALL IMAGES-
 docker rmi $(docker images -q -a)
 
-ADD A PROXY WHEN CREATING DOCKERFILES
--------------------------------------
+-KEEP A CONTAINER RUNNING TO INSPECT LATER-
+docker run -d ubuntu /bin/sh -c "while true; do echo hello world; sleep 1; done"
+
+
+WINDOWS (POWERSHELL)
+====================
+-REMOVE DANGLING IMAGES (<none>). IMAGES NEED TAGS TO STAY-
+docker images --filter dangling=true -q | %{docker rmi -f $_}
+
+-STOP ALL CONTAINERS-
+docker ps -a -q | %{docker stop $_}
+
+-REMOVE ALL CONTAINERS-
+docker ps -a -q | %{docker rm -f $_}
+
+-REMOVE ALL IMAGES (DANGEROUS!)-
+docker images | %{docker rmi -f $_}
+
+
+MISC
+====
+-ADD A PROXY WHEN CREATING DOCKERFILES-
 ENV http_proxy http://server:port
 ENV https_proxy http://server:port
 
-KEEP A CONTAINER RUNNING TO INSPECT LATER
------------------------------------------
-docker run -d ubuntu /bin/sh -c "while true; do echo hello world; sleep 1; done"
-
-FOLLOW LOGS ON A CONTAINER
---------------------------
+-FOLLOW LOGS ON A CONTAINER-
 docker logs -f 878978547
