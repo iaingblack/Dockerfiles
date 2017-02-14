@@ -1,3 +1,6 @@
+# DOCKERFILES
+
+## Shells
 If you need to swap shells, make sure you swap like this;
 
 `SHELL ["cmd /c"]`
@@ -9,7 +12,9 @@ Or, if you need to run one command in a specific shell run something like this;
 
 `RUN ["powershell.exe", "Install-WindowsFeature NET-Framework-45-ASPNET"]`
 
+# Images
 
+## Saving and Loading Images
 Given this type of image
 
 `REPOSITORY                                    TAG                                IMAGE ID            CREATED             SIZE`
