@@ -39,3 +39,8 @@ sc delete docker
 #--------------------------------------------------------------------
 #To set proxy do this in powershell
 [Environment]::SetEnvironmentVariable("HTTP_PROXY", "http://username:password@proxy:port/", [EnvironmentVariableTarget]::Machine)
+
+#--------------------------------------------------------------------
+#Install docker compose
+Invoke-WebRequest https://dl.bintray.com/docker-compose/master/docker-compose-Windows-x86_64.exe -UseBasicParsing -OutFile $env:ProgramFiles\docker\docker-compose.exe
+
