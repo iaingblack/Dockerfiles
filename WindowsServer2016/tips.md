@@ -91,3 +91,9 @@ To load images load this type of command
 `%* (%*) the entire command line.`
 
 `%<a letter> or %%<a letter> (%A or %%A) the variable in a for loop. Single % sign at command prompt and double % sign in a batch file.`
+
+# Docker Compose
+
+`ERROR: client version 1.22 is too old. Minimum supported API version is 1.24, please upgrade your client to a newer version`
+
+http://www.jeffreyfritz.com/2017/01/docker-compose-api-too-old-for-windows/
