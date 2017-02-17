@@ -58,35 +58,36 @@ To load images load this type of command
 
 `docker load -i microsoft_mssql-server-windows_6fb5a1dbd3c8_10.0.14393.321.dockerimage`
 
-CMD EXAMPLES
-&    seperates commands on a line.
+#CMD EXAMPLES
 
-&&    executes this command only if previous command's errorlevel is 0.
+`&    seperates commands on a line.`
 
-||    (not used above) executes this command only if previous command's errorlevel is NOT 0
+`&&    executes this command only if previous command's errorlevel is 0.`
 
->    output to a file
+`||    (not used above) executes this command only if previous command's errorlevel is NOT 0`
 
->>    append output to a file
+`>    output to a file`
 
-<    input from a file
+`>>    append output to a file`
 
-|    output of one command into the input of another command
+`<    input from a file`
 
-^    escapes any of the above, including itself, if needed to be passed to a program
+|`    output of one command into the input of another command`
 
-"    parameters with spaces must be enclosed in quotes
+`^    escapes any of the above, including itself, if needed to be passed to a program`
 
-+ used with copy to concatinate files. E.G. copy file1+file2 newfile
+`"    parameters with spaces must be enclosed in quotes`
 
-, used with copy to indicate missing parameters. This updates the files modified date. E.G. copy /b file1,,
+`+ used with copy to concatinate files. E.G. copy file1+file2 newfile`
 
-%variablename% a inbuilt or user set environmental variable
+`, used with copy to indicate missing parameters. This updates the files modified date. E.G. copy /b file1,,`
 
-!variablename! a user set environmental variable expanded at execution time, turned with SelLocal EnableDelayedExpansion command
+`%variablename% a inbuilt or user set environmental variable`
 
-%<number> (%1) the nth command line parameter passed to a batch file. %0 is the batchfile's name.
+`!variablename! a user set environmental variable expanded at execution time, turned with SelLocal EnableDelayedExpansion command`
 
-%* (%*) the entire command line.
+`%<number> (%1) the nth command line parameter passed to a batch file. %0 is the batchfile's name.`
 
-%<a letter> or %%<a letter> (%A or %%A) the variable in a for loop. Single % sign at command prompt and double % sign in a batch file.
+`%* (%*) the entire command line.`
+
+`%<a letter> or %%<a letter> (%A or %%A) the variable in a for loop. Single % sign at command prompt and double % sign in a batch file.`
