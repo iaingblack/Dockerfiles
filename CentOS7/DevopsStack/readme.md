@@ -8,6 +8,11 @@ docker run -d \
            -p 2812:2812   \
            --name zabbix  \
            berngp/docker-zabbix
+or
+
+https://hub.docker.com/r/monitoringartist/zabbix-xxl/
+
+## grafana
 
 ## jenkins
 
