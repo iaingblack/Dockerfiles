@@ -5,7 +5,13 @@ Install-WindowsFeature containers
 Restart-Computer -Force
 
 #--------------------------------------------------------------------
+# NEW WAY
+Install-PackageProvider -Name NuGet -MinimumVersion 2.8.5.201 -Force
+Install-Module -Name DockerMsftProvider -Force
+Install-Package -Name docker -ProviderName DockerMsftProvider -Force
 
+#--------------------------------------------------------------------
+# OLD WAY
 # Download, install and configure Docker Engine
 $version = (Invoke-WebRequest -UseBasicParsing https://raw.githubusercontent.com/docker/docker/master/VERSION).Content.Trim()
 Invoke-WebRequest "https://master.dockerproject.org/windows/amd64/docker-$($version).zip" -OutFile "$env:TEMP\docker.zip" -UseBasicParsing
