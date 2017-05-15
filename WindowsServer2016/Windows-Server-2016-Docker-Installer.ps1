@@ -5,7 +5,8 @@ Install-WindowsFeature containers
 Restart-Computer -Force
 
 #--------------------------------------------------------------------
-# NEW WAY
+# NEW WAY (If this fails remember to turn off FIPS compliance
+# Change this - HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Lsa\FipsAlgorithmPolicy\Enabled to 0
 Install-PackageProvider -Name NuGet -MinimumVersion 2.8.5.201 -Force
 Install-Module -Name DockerMsftProvider -Force
 Install-Package -Name docker -ProviderName DockerMsftProvider -Force
