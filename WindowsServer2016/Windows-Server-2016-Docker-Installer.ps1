@@ -10,6 +10,9 @@ Restart-Computer -Force
 # NEW WAY (If this fails remember to turn off FIPS compliance
 Install-PackageProvider -Name NuGet -MinimumVersion 2.8.5.201 -Force
 Install-Module -Name DockerMsftProvider -Force
+
+# If issues do this - https://github.com/OneGet/MicrosoftDockerProvider/issues/15#issuecomment-269219021
+# https://dockermsft.blob.core.windows.net/dockercontainer/docker-17-03-1-ee.zip
 Install-Package -Name docker -ProviderName DockerMsftProvider -Force
 
 #--------------------------------------------------------------------
