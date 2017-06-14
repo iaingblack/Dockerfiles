@@ -2,11 +2,12 @@
 # https://msdn.microsoft.com/en-gb/virtualization/windowscontainers/docker/configure_docker_daemon
 # Add the containers feature and restart
 Install-WindowsFeature containers
+# Change this if required - HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Lsa\FipsAlgorithmPolicy\Enabled to 0
+Set-ItemProperty -Path HKLM:\SYSTEM\CurrentControlSet\Control\Lsa\FipsAlgorithmPolicy\ -Name Enabled -Value 0
 Restart-Computer -Force
 
 #--------------------------------------------------------------------
 # NEW WAY (If this fails remember to turn off FIPS compliance
-# Change this - HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Lsa\FipsAlgorithmPolicy\Enabled to 0
 Install-PackageProvider -Name NuGet -MinimumVersion 2.8.5.201 -Force
 Install-Module -Name DockerMsftProvider -Force
 Install-Package -Name docker -ProviderName DockerMsftProvider -Force
