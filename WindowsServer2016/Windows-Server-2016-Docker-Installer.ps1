@@ -2,12 +2,25 @@
 # https://msdn.microsoft.com/en-gb/virtualization/windowscontainers/docker/configure_docker_daemon
 # Add the containers feature and restart
 Install-WindowsFeature containers
+# Change this if required - HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Lsa\FipsAlgorithmPolicy\Enabled to 0
+Set-ItemProperty -Path HKLM:\SYSTEM\CurrentControlSet\Control\Lsa\FipsAlgorithmPolicy\ -Name Enabled -Value 0
 Restart-Computer -Force
 
 #--------------------------------------------------------------------
+# NEW WAY (If this fails remember to turn off FIPS compliance
+Install-PackageProvider -Name NuGet -MinimumVersion 2.8.5.201 -Force
+Install-Module -Name DockerMsftProvider -Force
 
+# If issues do this - https://github.com/OneGet/MicrosoftDockerProvider/issues/15#issuecomment-269219021
+# https://dockermsft.blob.core.windows.net/dockercontainer/docker-17-03-1-ee.zip
+# https://dockermsft.blob.core.windows.net/dockercontainer/DockerMsftIndex.json 
+Install-Package -Name docker -ProviderName DockerMsftProvider -Force
+
+#--------------------------------------------------------------------
+# OLD WAY
 # Download, install and configure Docker Engine
-Invoke-WebRequest "https://download.docker.com/components/engine/windows-server/cs-1.12/docker.zip" -OutFile "$env:TEMP\docker.zip" -UseBasicParsing
+$version = (Invoke-WebRequest -UseBasicParsing https://raw.githubusercontent.com/docker/docker/master/VERSION).Content.Trim()
+Invoke-WebRequest "https://master.dockerproject.org/windows/amd64/docker-$($version).zip" -OutFile "$env:TEMP\docker.zip" -UseBasicParsing
 
 Expand-Archive -Path "$env:TEMP\docker.zip" -DestinationPath $env:ProgramFiles
 
@@ -39,3 +52,8 @@ sc delete docker
 #--------------------------------------------------------------------
 #To set proxy do this in powershell
 [Environment]::SetEnvironmentVariable("HTTP_PROXY", "http://username:password@proxy:port/", [EnvironmentVariableTarget]::Machine)
+
+#--------------------------------------------------------------------
+#Install docker compose
+Invoke-WebRequest https://dl.bintray.com/docker-compose/master/docker-compose-Windows-x86_64.exe -UseBasicParsing -OutFile $env:ProgramFiles\docker\docker-compose.exe
+
