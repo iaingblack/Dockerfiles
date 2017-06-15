@@ -13,6 +13,7 @@ Install-Module -Name DockerMsftProvider -Force
 
 # If issues do this - https://github.com/OneGet/MicrosoftDockerProvider/issues/15#issuecomment-269219021
 # https://dockermsft.blob.core.windows.net/dockercontainer/docker-17-03-1-ee.zip
+# https://dockermsft.blob.core.windows.net/dockercontainer/DockerMsftIndex.json 
 Install-Package -Name docker -ProviderName DockerMsftProvider -Force
 
 #--------------------------------------------------------------------
